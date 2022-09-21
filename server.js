@@ -19,6 +19,11 @@ app.get('/api/notes', (req, res) =>
     res.json(tasks)
 );
 
+// Create a POST route for /api/notes that will add new notes to the database
+app.post('/api/notes', (req, res) => 
+    res.json(`${req.method} request received to save a note`)
+);
+
 // Create a route that will serve up the notes.html page
 app.get('/notes', (req, res) => 
     res.sendFile(path.join(__dirname, 'public/notes.html'))
