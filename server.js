@@ -14,6 +14,11 @@ app.use(express.static('./public'));
 // Import and require the database of tasks
 const tasks = require('./db/db.json');
 
+// Create a GET route for /api/notes that returns the database as JSON
+app.get('/api/notes', (req, res) => 
+    res.json(tasks)
+);
+
 // Create a route that will serve up the notes.html page
 app.get('/notes', (req, res) => 
     res.sendFile(path.join(__dirname, 'public/notes.html'))
