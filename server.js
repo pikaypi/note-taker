@@ -35,7 +35,6 @@ app.post('/api/notes', (req, res) => {
         id: uuid()
     }
 
-    console.info(newNote);
     // Read existing notes from the database
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
@@ -56,7 +55,7 @@ app.post('/api/notes', (req, res) => {
         }
     });
 
-    res.json(notes).send();
+    res.sendFile(path.join(__dirname, 'db/db.json'))
 });
 
 // Create a route that will serve up the notes.html page
