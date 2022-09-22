@@ -15,7 +15,7 @@ app.use(express.static('./public'));
 
 // Add middleware for parsing application/json
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({ extended: true}))
 
 // Import and require the database of tasks
 const notes = require('./db/db.json');
