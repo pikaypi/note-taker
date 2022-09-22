@@ -27,15 +27,15 @@ app.get('/api/notes', (req, res) =>
 // Create a POST route for /api/notes that will add new notes to the database
 app.post('/api/notes', (req, res) => {
     // Temporary log that a request was received
-    const {title, text } = req.body;
+    const { title, text } = req.body;
 
     const newNote = {
         title,
         text,
         id: uuid()
     }
-    
-    console.log(newNote);
+
+    console.info(newNote);
     // Read existing notes from the database
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
@@ -55,6 +55,8 @@ app.post('/api/notes', (req, res) => {
             );
         }
     });
+
+    res.json(notes).send();
 });
 
 // Create a route that will serve up the notes.html page
