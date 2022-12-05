@@ -41,20 +41,12 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            id: uuid()
-        };
-
-        fs.readFile('./db/db.json', 'utf-8', (err, data) => {
-            if (err) {
-                console.error(err);
-            } else {
-                const parsedNotes = JSON.parse(data);
-
-                parsedNotes.push(newNote);
-
-                fs.writeFile('db/db.json', JSON.stringify(parsedNotes), (err) =>
-                    err
-                        ? console.error(err)
+            id: randomUUID().split('-')[0]
+        }
+        notes.push(newNote);
+        fs.writeFileSync('./db/db.json', JSON.stringify(notes), (err) => 
+            err
+                ? console.error(err)
                         : console.info('Successfully updated notes!')
                 );
     
