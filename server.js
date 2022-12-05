@@ -27,8 +27,11 @@ app.get('/notes', (req, res) => {
 
 // Route the get request for /api/notes
 app.get('/api/notes', (req, res) => {
-    res.json(notes);
-});
+    fs.readFile('./db/db.json', 'utf-8', (err, data) => {
+        err
+            ? res.json(err)
+            : res.json(JSON.parse(data))
+    });
 
 // Route the POST request for /api/notes to save a new note
 app.post('/api/notes', (req, res) => {
