@@ -33,7 +33,8 @@ app.get('/api/notes', (req, res) => {
             : res.json(JSON.parse(data))
     });
 
-// Route the POST request for /api/notes to save a new note
+});
+
 app.post('/api/notes', (req, res) => {
     const { title, text } = req.body;
 
