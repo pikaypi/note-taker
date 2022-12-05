@@ -48,14 +48,14 @@ app.post('/api/notes', (req, res) => {
         fs.writeFileSync('./db/db.json', JSON.stringify(notes), (err) => 
             err
                 ? console.error(err)
-                        : console.info('Successfully updated notes!')
-                );
+                : console.info('Succuessfully updated notes!')
+        );
     
-                res.json(newNote);
+        res.json(newNote);
             };
         })
     } else {
-        res.status(500).json('Error in posting note');
+        res.status(500).json('Error in posting note')
     }
 });
 
