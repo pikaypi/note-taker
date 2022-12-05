@@ -14,9 +14,8 @@ const PORT = process.env.port || 3001;
 
 // Add middleware for parsing application/json
 app.use(express.json());
-
-app.use(express.static('./public'))
-const notes = require('./db/db.json')
+app.use(express.static('./public'));
+let notes = require('./db/db.json')
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'))
