@@ -1,11 +1,13 @@
 const { randomUUID } = require('crypto');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const fs = require('fs');
 const uuid = require('./helpers/uuid')
 
 // Set the app variable to express()
 const app = express();
+const PORT = process.env.PORT || 3001;
 
 // Assign a port for the server
 const PORT = process.env.port || 3001;
