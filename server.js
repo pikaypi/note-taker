@@ -61,26 +61,13 @@ app.post('/api/notes', (req, res) => {
 
 app.delete('/api/notes/:id', (req, res) => {
     const id = req.params.id;
-
-    fs.readFile('./db/db.json', 'utf-8', (err, data) => {
-        if (err) {
-            console.error(err);
-        } else {
-            const parsedNotes = JSON.parse(data);
-            const newNotes = [];
-            for (let i = 0; i < parsedNotes.length; i++) {
-                if (parsedNotes[i]['id'] !== id) {
-                    newNotes.push(parsedNotes[i]);
-                }
-            }
-            fs.writeFile('./db/db.json', JSON.stringify(newNotes), (err) =>
-                err
-                    ? console.error(err)
-                    : console.info('Successfully updated notes!')
-            );
-            res.json(newNotes);
-        }
-    })
+    notes = notes.filter((note) => note.id != id);
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes), (err) => 
+        err
+            ? console.error(err)
+            : console.info('Successfully deleted note')
+    );
+    res.json(notes);
 });
 
 // Set the server to listen
