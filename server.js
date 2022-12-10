@@ -1,4 +1,4 @@
-const { randomUUID } = require('crypto');
+const UUID = require('./utils/uuid');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -42,7 +42,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            id: randomUUID().split('-')[0]
+            id: UUID()
         }
         notes.push(newNote);
         fs.writeFileSync('./db/db.json', JSON.stringify(notes), (err) => 
